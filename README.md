@@ -3,7 +3,7 @@
 
 ## Functionality
 
-- Add Task
-- View upcoming tasks
-- complete a task by clicking on "Check icon".
-- clear all upcoming tasks
+- Add Task.
+- View upcoming tasks.
+- Complete a task by clicking on "Check icon".
+- Clear all upcoming tasks.
