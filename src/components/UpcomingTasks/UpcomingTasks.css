@@ -1,0 +1,40 @@
+.upcoming-tasks-header > h2 {
+  margin-block: 0.5rem;
+}
+.upcoming-tasks-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.upcoming-tasks-header > #task-icon {
+  width: 10%;
+  height: auto;
+}
+.tasks-list {
+  padding-inline: 1.5rem;
+  padding-top: 1rem;
+  height: 80%;
+  overflow: auto;
+}
+.tasks-list > ul {
+  margin: 0;
+  list-style: none;
+}
+.tasks-list > ul > .list-element {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+#complete-task-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+#complete-task-btn:hover {
+  transform: scale(1.1);
+}
+
+.helper-text {
+  color: grey;
+}

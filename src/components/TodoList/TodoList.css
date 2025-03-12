@@ -1,0 +1,14 @@
+.task-container {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  column-gap: 1rem;
+}
+.task-container > * {
+  height: 65vh;
+  width: 40vw;
+  border-radius: 0.5rem;
+  border-color: black;
+  border-style: solid;
+  padding: 1rem;
+}
