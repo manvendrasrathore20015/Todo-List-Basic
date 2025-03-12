@@ -3,7 +3,6 @@
 ## Functionality
 
 - Add Task
-- Select task priority
-- View upcoming tasks in order of priority
-- complete task
+- View upcoming tasks
+- complete a task by clicking on "Check icon".
 - clear all upcoming tasks
