@@ -1,17 +1,32 @@
-import { useState } from "react";
+import React, { useContext, useRef } from "react";
 import taskIcon from "./../../assets/taskIcon.png";
 import addIcon from "./../../assets/addIcon.png";
 import clearTaskIcon from "./../../assets/clearTaskIcon.png";
 import "./TaskManager.css";
+import { TaskContext } from "../TodoList/TodoList";
 
-const TaskManager = ({ addNewTask, clearAllTasks }) => {
-  const [inputVal, setInputVal] = useState("");
+const TaskManager = React.memo(() => {
+  const inputRef = useRef("");
+  const { tasks, dispatch } = useContext(TaskContext);
 
   const addTask = () => {
-    if (inputVal.length) {
-      addNewTask(inputVal);
-      setInputVal("");
+    const inputValue = inputRef.current.value;
+    if (inputValue.length) {
+      const index = tasks.indexOf(inputValue);
+      if (index === -1) {
+        dispatch({ type: "ADD_TASK", payload: inputValue })
+      } else {
+        alert("Task already created !!");
+      }
+      inputRef.current.value = "";
     }
+  }
+
+  const clearAllTasks = () => {
+    if (tasks.length)
+      dispatch({ type: "DELETE_ALL_TASK" })
+    else
+      alert("There are no tasks to clear!!");
   }
 
   return (
@@ -25,13 +40,13 @@ const TaskManager = ({ addNewTask, clearAllTasks }) => {
           <input
             id="add-task-input"
             placeholder="Enter task name"
-            value={inputVal}
+            ref={inputRef}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 addTask();
               }
             }}
-            onChange={(e) => setInputVal(e.target.value)} />
+          />
           <img
             onClick={addTask}
             id="add-task-subicon"
@@ -50,6 +65,6 @@ const TaskManager = ({ addNewTask, clearAllTasks }) => {
       </div>
     </div>
   );
-};
+});
 
 export default TaskManager;

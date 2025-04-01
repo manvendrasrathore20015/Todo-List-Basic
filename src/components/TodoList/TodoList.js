@@ -1,34 +1,20 @@
-import { useState } from "react";
+import { createContext, useMemo, useReducer } from "react";
 import TaskManager from "../TaskManager/TaskManager";
 import UpcomingTasks from "../UpcomingTasks/UpcomingTasks";
+import taskReducer from "../../utils/taskReducer";
 import "./TodoList.css";
 
-const TodoList = () => {
-    const [tasks, setTasks] = useState([]);
-    const addNewTask = (task) => {
-        const index = tasks.indexOf(task);
-        if (index === -1) {
-            setTasks([...tasks, task]);
-        } else {
-            alert("Task already created !!");
-        }
-    };
-    const clearAllTasks = () => {
-        if (tasks.length)
-            setTasks([]);
-        else
-            alert("There are no tasks to clear!!");
-    }
+export const TaskContext = createContext(null);
 
-    const clearSelectedTask = (task) => {
-        const updatedTasks = tasks.filter((t) => t !== task);
-        setTasks(updatedTasks);
-    }
+const TodoList = () => {
+    const [tasks, dispatch] = useReducer(taskReducer, []);
 
     return (
         <div className="task-container">
-            <TaskManager addNewTask={(task) => addNewTask(task)} clearAllTasks={clearAllTasks} />
-            <UpcomingTasks tasks={tasks} clearSelectedTask={clearSelectedTask} />
+            <TaskContext.Provider value={useMemo(() => ({ tasks, dispatch }), [tasks])}>
+                <TaskManager />
+                <UpcomingTasks />
+            </TaskContext.Provider>
         </div>
     )
 }

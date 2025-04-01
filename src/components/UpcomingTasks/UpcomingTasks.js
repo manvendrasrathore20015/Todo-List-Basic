@@ -1,8 +1,16 @@
-import "./UpcomingTasks.css";
+import { useContext } from "react";
 import checkIcon from "../../assets/checkIcon.png";
 import taskIcon from "../../assets/taskIcon.png";
+import { TaskContext } from "../TodoList/TodoList";
+import "./UpcomingTasks.css";
 
-const UpcomingTasks = ({ tasks, clearSelectedTask }) => {
+const UpcomingTasks = () => {
+  const { tasks, dispatch } = useContext(TaskContext);
+
+  const clearSelectedTask = (task) => {
+    dispatch({ type: "COMPLETE_TASK", payload: task })
+  }
+
   return (
     <div className="upcoming-tasks-container">
       <div className="upcoming-tasks-header">
